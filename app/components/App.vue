@@ -5,6 +5,7 @@
                 <Label text="MENU" @tap="$refs.drawer.nativeView.showDrawer()" col="0"/>
                 <Label class="title" text="Welcome to NativeScript-Vue!"  col="1"/>
             </GridLayout>
+            <NavigationButton visibility="never" android.systemIcon="ic_menu_back" />
         </ActionBar>
 
         <RadSideDrawer ref="drawer">
@@ -17,7 +18,10 @@
             </StackLayout>
 
             <GridLayout ~mainContent columns="*" rows="*">
-                <Label class="message" :text="msg" col="0" row="0"/>
+                <!-- <Label class="message" :text="msg" col="0" row="0"/> -->
+                <Image
+                    :imageSource="imageSource"
+                />
             </GridLayout>
         </RadSideDrawer>
     </Page>
@@ -25,12 +29,20 @@
 
 <script >
     import Item2 from '@/components/Item2'
+    import { fromNativeSource } from 'tns-core-modules/image-source'
+    import ZXing from 'nativescript-zxing'
     export default {
         data() {
             return {
                 msg: '一起同步測試看看模擬器給不給力!',
-                Item2Page: Item2
-            }
+                Item2Page: Item2,
+                imageSource: null
+            };
+        },
+        beforeMount() {
+            const zx = new ZXing()
+            const barcode = zx.createBarcode({ encode: 'AZ000001', height: 200, width: 200, format: ZXing.QR_CODE })
+            this.imageSource = fromNativeSource(barcode)
         }
     }
 </script>

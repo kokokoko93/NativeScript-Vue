@@ -26,8 +26,8 @@
             return {
                 msg: 'Login頁',
                 AppPage: App,
-                email: '',
-                acc: ''
+                email: 'Test',
+                acc: '123'
             }
         },
         methods: {

@@ -5,6 +5,7 @@
                 <Label text="MENU" @tap="$refs.drawer.nativeView.showDrawer()" col="0"/>
                 <Label class="title" text="Welcome to NativeScript-Vue!"  col="1"/>
             </GridLayout>
+            <NavigationButton text="Go back" visibility="never" android.systemIcon="ic_menu_back" @tap="goBack" />
         </ActionBar>
 
         <RadSideDrawer ref="drawer">
